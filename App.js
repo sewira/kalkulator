@@ -6,14 +6,41 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { color } from "./color/color";
 
 export default function App() {
-  const [hasil, setHasil] = useState(5);
+  const [hasil, setHasil] = useState(null);
   const [input1, setInput1] = useState(null);
   const [input2, setInput2] = useState(null);
 
+  const tambah = (a, b) => {
+    const result = parseInt(a) + parseInt(b);
+    setHasil(result);
+    setInput1();
+    setInput2();
+  };
+
+  const kurang = (a, b) => {
+    const result = parseInt(a) - parseInt(b);
+    setHasil(result);
+    setInput1();
+    setInput2();
+  };
+  const kali = (a, b) => {
+    const result = parseInt(a) * parseInt(b);
+    setHasil(result);
+    setInput1();
+    setInput2();
+  };
+
+  const bagi = (a, b) => {
+    const result = parseInt(a) / parseInt(b);
+    setHasil(result);
+    setInput1();
+    setInput2();
+  };
   return (
     <View>
       <StatusBar style="auto" />
@@ -52,24 +79,37 @@ export default function App() {
           />
         </View>
         <View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => tambah(input1, input2)}
+          >
             <Text style={styles.textBtn}>Tambah</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => kurang(input1, input2)}
+          >
             <Text style={styles.textBtn}>Kurang</Text>
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => kali(input1, input2)}
+          >
             <Text style={styles.textBtn}>Kali</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => bagi(input1, input2)}
+          >
             <Text style={styles.textBtn}>Bagi</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <Text>{input1}</Text>
-      <Text>{input2}</Text>
+      <Text style={{ textAlign: "center", fontSize: 50, color: "red" }}>
+        {hasil}
+      </Text>
     </View>
   );
 }
